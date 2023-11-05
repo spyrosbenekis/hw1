@@ -61,11 +61,8 @@ double factor(double xn)
     double h = 0.000001;
     double fac = (f(xn + h) - f(xn)) / h;
     
-    //printf("%.2f\n",fac);
-    
     if (fabs(fac) < 0.0001) {
         return 0.0;
-        printf("%.2f\n",fac);
     }
     else 
         return fac;
