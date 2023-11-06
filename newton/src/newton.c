@@ -12,7 +12,7 @@ double arr[6];
 int main(int argc, char **argv) {
     
     if (argc != 8) {
-        printf("Program needs to be called as `./nt a_0 a_1 a_2 a_3 a_4 a_5 x_0`\n");
+        printf("Program needs to be called as `./newton a_0 a_1 a_2 a_3 a_4 a_5 x_0`\n");
         return 1;
     }
 
