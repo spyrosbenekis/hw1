@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 
-#define TRUE 1
-#define FALSE 0
-
-int square(long long int num);
-int psp(long long int num);
-int pal(long long int num);
-int first(long long int num);
+bool square(int64_t num);
+bool psp(int64_t num);
+bool pal(int64_t num);
+bool first(int64_t num);
 
 int main(int argc, char **argv) {
     
@@ -17,80 +15,67 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    int64_t st = atoi(argv[1]);
-    int64_t fn = atoi(argv[2]);
-    int64_t count=0;
+    int64_t st = atoll(argv[1]);
+    int64_t fn = atoll(argv[2]);
+    int64_t count = 0;
 
-    if(st<1 || st>fn || fn>1000000000000LL){
+    if (st < 1 || st > fn || fn > 1000000000000LL) {
         printf("Wrong\n");
         return 1;
     }
 
-    for(int64_t i=st; i<=fn; i++){
-        if((square(i)+psp(i)+pal(i))==3){
-            count+=i;
+    for (int64_t i = st; i <= fn; i++) {
+        if (square(i) && psp(i) && pal(i)) {
+            count += i;
         }
     }
 
-    printf("%ld\n",count);
+    printf("%ld\n", count);
 
     return 0;
 }
 
-int square(long long int num)
+bool square(int64_t num) 
 {
-    int64_t sqr;
+    int64_t sqr = sqrt(num);
 
-    sqr = sqrt(num);
-
-    if(sqr*sqr==num && first(sqr)==TRUE)
-        return TRUE;
-    else 
-        return FALSE;
+    return sqr * sqr == num && first(sqr);
 }
 
-int psp(long long int num)
+bool psp(int64_t num) 
 {
-    int64_t kat=0;
+    int64_t kat = 0;
 
-    do{
+    do {
         kat = (kat * 10) + (num % 10);
-    }while(num/=10);
+    } while (num /= 10);
 
     int64_t sqr = sqrt(kat);
 
-    if(sqr*sqr==kat && first(sqr)==TRUE)
-        return TRUE;
-    else 
-        return FALSE;
+    return sqr * sqr == kat && first(sqr);
 }
 
-int pal(long long int num)
-{
-    int64_t kat=0;
-    int64_t n=num;
+bool pal(int64_t num) {
+    int64_t kat = 0;
+    int64_t n = num;
 
-    do{
+    do {
         kat = (kat * 10) + (num % 10);
-    }while(num/=10);
+    } while (num /= 10);
 
-    if(kat!=n)
-        return TRUE;
-    else 
-        return FALSE;
+    return kat != n;
 }
 
-int first(long long int num) 
-{
-    if (num <= 1) {
-        return FALSE;
+bool first(int64_t num) 
+{ 
+    double sqroot = sqrt(num); 
+  
+    for (int64_t i = 2; i <= sqroot; i++) { 
+   
+        if (num % i == 0) { 
+            return false;
+        } 
     }
 
-    for (int i = 2; i * i <= num; i++) {
-        if (num % i == 0) {
-            return FALSE;
-        }
-    }
-
-    return TRUE;
+    return true;
 }
