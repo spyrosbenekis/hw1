@@ -58,6 +58,15 @@ double f(double xn)
 
 double factor(double xn)
 {
+    // double h = 0.000001;
+    // double fac = (f(xn + h) - f(xn)) / h;
+    
+    // if (fabs(fac) < 0.0001) {
+    //     return 0.0;
+    // }
+    // else 
+    //     return fac;
+
     double fac=arr[1];
 
     for(int i=2;i<6;i++){
