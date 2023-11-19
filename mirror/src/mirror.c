@@ -51,7 +51,7 @@ bool psp(int64_t num)
     } while (num /= 10);
 
     int64_t sqr = sqrt(kat);
-
+    
     return sqr * sqr == kat && first(sqr);
 }
 
@@ -68,9 +68,9 @@ bool pal(int64_t num) {
 
 bool first(int64_t num) 
 { 
-    double sqroot = sqrt(num); 
+    double sqr = sqrt(num); 
   
-    for (int64_t i = 2; i <= sqroot; i++) { 
+    for (int64_t i = 2; i <= sqr; i++) { 
    
         if (num % i == 0) { 
             return false;
