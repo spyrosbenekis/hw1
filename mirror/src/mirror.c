@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 bool square(int64_t num);
-bool first(int64_t num);
+bool prime(int64_t num);
 
 int main(int argc, char **argv) {
     
@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
 
     for (int64_t i = sqrt(st); i <= sqrt(fn); i++) {
         
-        register int64_t kat = 0, num = i*i;
+        int64_t kat = 0, num = i*i;
 
         do {
             kat = (kat * 10) + (num % 10);
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 
         num = i*i;
 
-        if (square(num) && square(kat) && kat != num)
+        if (kat != num && square(kat) && prime(i))
             count += num;
     }
 
@@ -45,17 +45,17 @@ bool square(int64_t num)
 {
     int64_t sqr = sqrt(num);
 
-    return sqr * sqr == num && first(sqr);
+    return sqr * sqr == num && prime(sqr);
 }
 
-bool first(int64_t num) 
-{ 
-    double sqr = sqrt(num); 
-    
-    if(num%2==0)
+bool prime(int64_t num) 
+{     
+    if(num == 1 || num == 2)
+        return true;
+    else if(num%2==0)
         return false;
 
-    for (int64_t i = 3; i <= sqr; i+=2) { 
+    for (int64_t i = 3; i <= sqrt(num); i+=2) { 
    
         if (num % i == 0) { 
             return false;
