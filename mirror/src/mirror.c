@@ -4,8 +4,6 @@
 #include <stdbool.h>
 
 bool square(int64_t num);
-bool psp(int64_t num);
-bool pal(int64_t num);
 bool first(int64_t num);
 
 int main(int argc, char **argv) {
@@ -19,15 +17,21 @@ int main(int argc, char **argv) {
     int64_t fn = atoll(argv[2]);
     int64_t count = 0;
 
-    if (st < 1 || st > fn || fn > 1000000000000LL) {
+    if (st < 1 || st > fn || fn > 1000000000000000) {
         printf("Wrong\n");
         return 1;
     }
 
-    for (int64_t i = st; i <= fn; i++) {
-        if (square(i) && psp(i) && pal(i)) {
-            count += i;
-        }
+    for (int64_t i = sqrt(st); i <= sqrt(fn); i++) {
+        
+        register int64_t kat = 0, num = i*i;
+
+        do {
+            kat = (kat * 10) + (num % 10);
+        } while (num /= 10);
+
+        if (square(i*i) && square(kat) && kat != i*i)
+            count += i*i;
     }
 
     printf("%ld\n", count);
@@ -40,30 +44,6 @@ bool square(int64_t num)
     int64_t sqr = sqrt(num);
 
     return sqr * sqr == num && first(sqr);
-}
-
-bool psp(int64_t num) 
-{
-    int64_t kat = 0;
-
-    do {
-        kat = (kat * 10) + (num % 10);
-    } while (num /= 10);
-
-    int64_t sqr = sqrt(kat);
-    
-    return sqr * sqr == kat && first(sqr);
-}
-
-bool pal(int64_t num) {
-    int64_t kat = 0;
-    int64_t n = num;
-
-    do {
-        kat = (kat * 10) + (num % 10);
-    } while (num /= 10);
-
-    return kat != n;
 }
 
 bool first(int64_t num) 
