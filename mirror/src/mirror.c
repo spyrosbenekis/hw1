@@ -30,8 +30,10 @@ int main(int argc, char **argv) {
             kat = (kat * 10) + (num % 10);
         } while (num /= 10);
 
-        if (square(i*i) && square(kat) && kat != i*i)
-            count += i*i;
+        num = i*i;
+
+        if (square(num) && square(kat) && kat != num)
+            count += num;
     }
 
     printf("%ld\n", count);
