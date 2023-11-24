@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     int64_t fn = atoll(argv[2]);
     int64_t count = 0;
 
-    if (st < 1 || st > fn || fn > 1000000000000000) {
+    if (st < 1 || st > fn || fn > 1e+15) {
         printf("Wrong\n");
         return 1;
     }
