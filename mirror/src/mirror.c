@@ -49,8 +49,11 @@ bool square(int64_t num)
 bool first(int64_t num) 
 { 
     double sqr = sqrt(num); 
-  
-    for (int64_t i = 2; i <= sqr; i++) { 
+    
+    if(num%2==0)
+        return false;
+
+    for (int64_t i = 3; i <= sqr; i+=2) { 
    
         if (num % i == 0) { 
             return false;
