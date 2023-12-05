@@ -1,3 +1,4 @@
+//Εκτεταμένη ανάλυση του κώδικα γίνεται στο README
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
